@@ -1,13 +1,17 @@
 <header>
   <h1 class="title">Todo list</h1>
-  <button class="logout">Se déconnecter</button>
+  <button class="btn btn-logout" title="Se déconnecter">Se déconnecter</button>
 </header>
 
 <section class="todo-form">
   <form>
     <div class="form-group">
-      <label for="new_todo">New Todo</label>
-      <input type="text" id="new_todo" name="new_todo" />
+      <input
+        type="text"
+        id="new_todo"
+        name="new_todo"
+        placeholder="Nouvelle tâche"
+      />
     </div>
     <button class="btn btn-add" type="submit">Ajouter</button>
   </form>
@@ -15,8 +19,14 @@
 
 <section class="todo-list">
   <article class="todo">
-    <input type="checkbox" name="todo_complete" id="todo_complete" />
-    <span class="todo_title">To do</span>
+    <div class="checkbox">
+      <input type="checkbox" name="todo_complete" id="todo_complete" />
+      <label for="todo_complete"></label>
+    </div>
+    <div class="todo_content">
+      <span class="todo_title">To do</span>
+      <span class="todo_date">Jeudi 4 Novembre 2021</span>
+    </div>
     <div class="todo_actions">
       <button class="btn btn-edit" type="button">Modifier</button>
       <button class="btn btn-delete" type="button">Supprimer</button>
