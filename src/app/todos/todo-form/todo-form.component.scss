@@ -1,0 +1,39 @@
+.todo-form {
+  padding: 0.5rem;
+  background: #ededed;
+  border-radius: 0.3rem;
+  box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.4);
+
+  form {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+
+    .form-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-size: 0.7rem;
+      }
+
+      input[type="text"] {
+        padding: 0.5rem 0.5rem 0.5rem 0;
+        font-size: 1.3rem;
+        font-weight: 600;
+        letter-spacing: 0.02rem;
+        background: none;
+        border: none;
+        border-bottom: 2px solid #343434;
+      }
+    }
+
+    .btn-add {
+      align-self: center;
+      text-transform: inherit;
+      background-color: #4caf50;
+      color: #fff;
+    }
+  }
+}
