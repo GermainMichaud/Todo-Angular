@@ -2,6 +2,8 @@
 
 This project is a todo app made with angular. Todos are stored in an external API.
 
+> Comming soon: This app with [NGRX](https://github.com/GermainMichaud/Todo-Angular/tree/ngrx)
+
 ___
 
 ## Content
@@ -58,6 +60,7 @@ No external dev depedencies
 
 ## Todo
 
+- [ ] Write test
 - [ ] Use NGRX for state managment
 
 ---
