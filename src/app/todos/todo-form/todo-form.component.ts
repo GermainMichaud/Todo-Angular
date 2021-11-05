@@ -14,14 +14,14 @@ export class TodoFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.addTodoForm = this.fb.group({
-      new_todo: ['', [Validators.required, Validators.minLength(3)]],
+      todo_label: ['', [Validators.required, Validators.minLength(3)]],
     });
   }
 
   public addTodo(event: Event): void {
     event.preventDefault();
-    console.log(this.addTodoForm.value);
-    this.todoService.addTodo(this.addTodoForm.value.new_todo);
+    this.addTodoForm.addControl('todo_is_done', this.fb.control(0));
+    this.todoService.addUpdateTodo(this.addTodoForm.value);
     this.addTodoForm.reset();
   }
 }
