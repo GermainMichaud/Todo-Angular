@@ -6,8 +6,8 @@ import {
   HttpInterceptor,
   HttpResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
@@ -31,13 +31,18 @@ export class AuthInterceptor implements HttpInterceptor {
             localStorage.setItem('user', JSON.stringify(body.user));
             this.authService.setUser(body.user);
             this.router.navigate(['/']);
-          } else if (event.status === 401) {
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            this.authService.setUser(null);
-            this.router.navigate(['/login']);
           }
         }
+      }),
+      catchError((err) => {
+        if (err.status === 401) {
+          console.log('Unauthorized');
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          this.authService.setUser(null);
+          this.router.navigate(['/login']);
+        }
+        return of(err);
       })
     );
   }
