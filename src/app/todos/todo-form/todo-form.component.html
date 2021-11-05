@@ -1,13 +1,16 @@
 <section class="todo-form">
-  <form>
+  <form [formGroup]="addTodoForm" (submit)="addTodo($event)">
     <div class="form-group">
       <input
         type="text"
         id="new_todo"
         name="new_todo"
         placeholder="Nouvelle tâche"
+        formControlName="new_todo"
       />
     </div>
-    <button class="btn btn-add" type="submit">Ajouter</button>
+    <button class="btn btn-add" type="submit" [disabled]="!addTodoForm.valid">
+      Ajouter
+    </button>
   </form>
 </section>
