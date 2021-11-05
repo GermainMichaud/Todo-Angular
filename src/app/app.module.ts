@@ -7,6 +7,7 @@ import { TodosComponent } from './todos/todos.component';
 import { TodoFormComponent } from './todos/todo-form/todo-form.component';
 import { TodoItemComponent } from './todos/todo-item/todo-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     TodosComponent,
     TodoFormComponent,
     TodoItemComponent,
+    LoginComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
