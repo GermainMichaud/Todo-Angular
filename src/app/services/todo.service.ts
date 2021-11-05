@@ -13,14 +13,7 @@ export class TodoService {
   public addUpdateTodosSub: Subscription = new Subscription();
   public deleteTodosSub: Subscription = new Subscription();
 
-  public todos$ = new BehaviorSubject<Todo[]>([
-    {
-      todo_id: 1,
-      todo_label: 'Todo 1',
-      todo_is_done: 0,
-      todo_date: new Date(),
-    },
-  ]);
+  public todos$ = new BehaviorSubject<Todo[]>([]);
 
   constructor(private http: HttpClient) {}
 
