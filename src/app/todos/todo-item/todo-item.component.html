@@ -1,14 +1,56 @@
 <article class="todo">
   <div class="checkbox">
-    <input type="checkbox" name="todo_complete" id="todo_complete" />
-    <label for="todo_complete"></label>
+    <input
+      type="checkbox"
+      name="todo_complete-{{ todo.todo_id }}"
+      id="todo_complete-{{ todo.todo_id }}"
+      [checked]="todo.todo_is_done"
+      (change)="updateTodo(true)"
+    />
+    <label for="todo_complete-{{ todo.todo_id }}"></label>
   </div>
-  <div class="todo_content">
-    <span class="todo_title">To do</span>
-    <span class="todo_date">Jeudi 4 Novembre 2021</span>
+  <div
+    class="todo_content"
+    (dblclick)="isEditing = true"
+    *ngIf="!isEditing; else inputTodo"
+  >
+    <span class="todo_label">{{ todo.todo_label }}</span>
+    <span class="todo_date">{{ todo.todo_date | date: "dd/MM/YYY" }}</span>
   </div>
+  <ng-template #inputTodo>
+    <div class="todo_content">
+      <form [formGroup]="updateTodoForm">
+        <input
+          type="text"
+          class="todo_label"
+          name="todo_label-{{ todo.todo_id }}"
+          id="todo_label-{{ todo.todo_id }}"
+          formControlName="label"
+          (keyup.enter)="updateTodo()"
+        />
+      </form>
+    </div>
+  </ng-template>
   <div class="todo_actions">
-    <button class="btn btn-edit" type="button">Modifier</button>
-    <button class="btn btn-delete" type="button">Supprimer</button>
+    <button
+      class="btn btn-edit"
+      type="button"
+      *ngIf="!isEditing"
+      (click)="isEditing = true"
+    >
+      Modifier
+    </button>
+    <button
+      class="btn btn-add"
+      type="button"
+      *ngIf="isEditing"
+      (click)="updateTodo()"
+    >
+      Enregistrer
+    </button>
+    <button class="btn btn-delete" type="button" (click)="deleteTodo()">
+      Supprimer
+    </button>
   </div>
 </article>
+{{ todo | json }}
