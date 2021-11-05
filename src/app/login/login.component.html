@@ -1,8 +1,18 @@
 <section class="login">
-  <form class="login-form">
+  <form class="login-form" [formGroup]="loginForm" (submit)="login()">
     <h1 class="login-title">Connection</h1>
-    <input type="text" class="login-input" placeholder="Username" />
-    <input type="password" class="login-input" placeholder="Password" />
-    <button class="btn btn-login">Se connecter</button>
+    <input
+      type="text"
+      class="login-input"
+      placeholder="Username"
+      formControlName="login"
+    />
+    <input
+      type="password"
+      class="login-input"
+      placeholder="Password"
+      formControlName="password"
+    />
+    <button class="btn btn-login" type="submit">Se connecter</button>
   </form>
 </section>
