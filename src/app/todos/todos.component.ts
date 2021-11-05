@@ -8,10 +8,14 @@ import { TodoService } from '../services/todo.service';
   styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent implements OnInit, OnDestroy {
+
+  public username: string | undefined;
+
   constructor(public todoService: TodoService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.todoService.getTodos();
+    this.username = JSON.parse(localStorage.getItem('user') as string).name;
   }
 
   ngOnDestroy(): void {
