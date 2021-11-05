@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 import { TodoService } from '../services/todo.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { TodoService } from '../services/todo.service';
   styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent implements OnInit, OnDestroy {
-  constructor(public todoService: TodoService) {}
+  constructor(public todoService: TodoService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.todoService.getTodos();
@@ -16,4 +17,9 @@ export class TodosComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.todoService.unsubscribe();
   }
+
+  public logout(): void {
+    this.authService.logout();
+  }
+
 }
