@@ -36,7 +36,7 @@ export class TodoItemComponent implements OnInit {
     }
     if (!this.updateTodoForm.valid) return;
     this.todo.todo_label = this.updateTodoForm.value.label;
-    this.todoService.updateTodo(this.todo);
+    this.todoService.addUpdateTodo(this.todo);
     this.isEditing = false;
   }
 
