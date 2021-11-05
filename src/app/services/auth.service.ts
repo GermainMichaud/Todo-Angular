@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -10,7 +11,7 @@ export class AuthService {
   private API_URL = environment.API_URL;
   private userInfo = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   get user(): any {
     return this.userInfo;
@@ -22,5 +23,12 @@ export class AuthService {
 
   public login(credentials: Record<string, string>): void {
     this.http.post(`${this.API_URL}/auth/login`, credentials).subscribe();
+  }
+
+  public logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.userInfo = null;
+    this.router.navigate(['/login']);
   }
 }
