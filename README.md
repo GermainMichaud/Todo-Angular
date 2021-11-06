@@ -2,9 +2,11 @@
 
 This project is a todo app made with angular. Todos are stored in an external API.
 
-> Comming soon: This app with [NGRX](https://github.com/GermainMichaud/Todo-Angular/tree/ngrx)
+> [Demo](https://todo-angular.surge.sh)
+> Username: `test1`
+> Password: `123`
 
-___
+---
 
 ## Content
 
@@ -48,7 +50,10 @@ ng test # or npm run test || or npm test  ||  npm t
 
 ## Dependencies
 
-No external depedencies
+| Package                                           | Version  |
+| ------------------------------------------------- | -------- |
+| [@ngrx/store](https://github.com/ngrx/platform)   | `12.5.1` |
+| [@ngrx/effects](https://github.com/ngrx/platform) | `12.5.1` |
 
 ---
 
@@ -61,7 +66,7 @@ No external dev depedencies
 ## Todo
 
 - [ ] Write test
-- [ ] Use NGRX for state managment
+- [x] Use NGRX for state managment
 
 ---
 
