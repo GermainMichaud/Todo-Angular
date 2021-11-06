@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Todo } from 'src/app/interfaces/todo';
-import { TodoService } from 'src/app/services/todo.service';
+import { Store } from '@ngrx/store';
+import { Todo, TodoDone } from 'src/app/interfaces/todo';
+import { removeTodo, updateTodo } from 'src/app/store/todo/todo.actions';
 
 @Component({
   selector: 'app-todo-item',
@@ -22,7 +23,7 @@ export class TodoItemComponent implements OnInit {
     label: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
 
-  constructor(private todoService: TodoService) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.updateTodoForm.patchValue({
@@ -31,16 +32,22 @@ export class TodoItemComponent implements OnInit {
   }
 
   public updateTodo(value: boolean = false): void {
+    let isDone: TodoDone = this.todo.todo_is_done;
     if (value) {
-      this.todo.todo_is_done = Number(!this.todo?.todo_is_done);
+      isDone = Number(!this.todo?.todo_is_done);
     }
     if (!this.updateTodoForm.valid) return;
-    this.todo.todo_label = this.updateTodoForm.value.label;
-    this.todoService.addUpdateTodo(this.todo);
+    this.store.dispatch(
+      updateTodo({
+        todo_id: this.todo.todo_id as number,
+        todo_label: this.updateTodoForm.value.label,
+        todo_is_done: isDone,
+      })
+    );
     this.isEditing = false;
   }
 
   public deleteTodo(): void {
-    this.todoService.deleteTodo(this.todo.todo_id as number);
+    this.store.dispatch(removeTodo({ id: this.todo.todo_id as number }));
   }
 }
