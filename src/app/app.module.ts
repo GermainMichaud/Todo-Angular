@@ -10,6 +10,10 @@ import { TodoFormComponent } from './todos/todo-form/todo-form.component';
 import { TodoItemComponent } from './todos/todo-item/todo-item.component';
 import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { todoReducer } from './store/todo/todo.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { TodoEffects } from './store/todo/todo.effects';
 
 @NgModule({
   declarations: [
@@ -24,6 +28,10 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    StoreModule.forRoot({
+      todos: todoReducer,
+    }),
+    EffectsModule.forRoot([TodoEffects]),
   ],
   providers: [
     {
