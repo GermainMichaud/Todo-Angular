@@ -1,14 +1,16 @@
 <header>
   <h1 class="title">{{ username }}</h1>
-  <button class="btn btn-logout" title="Se déconnecter" (click)="logout()">Se déconnecter</button>
+  <button class="btn btn-logout" title="Se déconnecter" (click)="logout()">
+    Se déconnecter
+  </button>
 </header>
 
 <app-todo-form></app-todo-form>
 
 <section class="todo-list">
-  <ng-container *ngIf="(todoService.todos$ | async)?.length; else empty">
+  <ng-container *ngIf="(todos$ | async)?.length; else empty">
     <app-todo-item
-      *ngFor="let todo of todoService.todos$ | async"
+      *ngFor="let todo of todos$ | async"
       [todo]="todo"
     ></app-todo-item>
   </ng-container>
