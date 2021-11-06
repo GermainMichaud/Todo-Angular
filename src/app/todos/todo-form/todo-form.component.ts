@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TodoService } from 'src/app/services/todo.service';
+import { Store } from '@ngrx/store';
+import { addTodo } from 'src/app/store/todo/todo.actions';
 
 @Component({
   selector: 'app-todo-form',
@@ -10,7 +11,7 @@ import { TodoService } from 'src/app/services/todo.service';
 export class TodoFormComponent implements OnInit {
   public addTodoForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder, private todoService: TodoService) {}
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   ngOnInit(): void {
     this.addTodoForm = this.fb.group({
@@ -21,7 +22,7 @@ export class TodoFormComponent implements OnInit {
   public addTodo(event: Event): void {
     event.preventDefault();
     this.addTodoForm.addControl('todo_is_done', this.fb.control(0));
-    this.todoService.addUpdateTodo(this.addTodoForm.value);
+    this.store.dispatch(addTodo(this.addTodoForm.value));
     this.addTodoForm.reset();
   }
 }
